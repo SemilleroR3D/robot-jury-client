@@ -1,28 +1,39 @@
-import { useState } from 'react'
-import './App.css'
-import Navbar from './components/Navbar'
-import Scoreboard from './components/ScoreBoard'
+import Layout from './layouts/Layout'
+import {
+  createBrowserRouter,
+  RouterProvider
+} from 'react-router-dom'
+import ErrorPage from './pages/ErrorPages'
+import HomePage from './pages/Home'
+import LoginPage from './pages/LoginPage'
+import RegisterPage from './pages/RegisterPage'
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Layout />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: '/',
+        element: <HomePage />
+      },
+      {
+        path: '/login',
+        element: <LoginPage />
+      },
+      {
+        path: '/register',
+        element: <RegisterPage />
+      }
+    ]
+  }
+])
 
 function App () {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <Navbar />
-      <div>
-        <Scoreboard />
-      </div>
-      <div className='card'>
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className='read-the-docs'>
-        Click on the Vite and React logos to learn more
-      </p>
+      <RouterProvider router={router} />
     </>
   )
 }

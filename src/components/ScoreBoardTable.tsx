@@ -134,9 +134,9 @@ export default function TableCollapsibleRow () {
         <thead>
           <tr>
             <th style={{ width: 40 }} aria-label='empty' />
-            <th style={{ width: '40%' }}>Dessert (100g serving)</th>
-            <th>Calories</th>
-            <th>Fat&nbsp;(g)</th>
+            <th style={{ width: '40%' }}>Equipo</th>
+            <th>Arquitectura</th>
+            <th>Disen</th>
             <th>Carbs&nbsp;(g)</th>
             <th>Protein&nbsp;(g)</th>
           </tr>
