@@ -41,6 +41,8 @@ export default function UserPage () {
   const handleChange = (value: string) => {
     if (value) {
       getRoleById(user.accessToken, value).then(data => setUsers(data.users))
+    } else {
+      getAllUsers(user.accessToken).then((data) => console.log(data))
     }
   }
 
