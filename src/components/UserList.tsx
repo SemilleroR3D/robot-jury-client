@@ -23,6 +23,8 @@ export default function UserList ({ users, searchTerm }: UserListProps) {
               <TableRow key={user.id}>
                 <TableCell>{user.firstName} {user.lastName}</TableCell>
                 <TableCell>{user.email}</TableCell>
+                {/* <TableCell>{user.userTypes.map(rol => rol.name).join(', ')}
+                </TableCell> */}
                 <TableCell />
                 <TableCell>
                   <Button>Eliminar</Button>

@@ -15,7 +15,7 @@ export const registerUser = async (data: RegisterData) => {
 
 export const getAllUsers = async (accessToken: string) => {
   try {
-    const response = await axios.get('/users', {
+    const response = await axios.get('/users/drafts', {
       headers: {
         Authorization: `Bearer ${accessToken}`
       }
