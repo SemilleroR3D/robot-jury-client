@@ -1,0 +1,4 @@
+& > :first-of-type:not(style):not(:first-of-type ~ *),
+& > style + * {
+    margin-top: 0;
+}

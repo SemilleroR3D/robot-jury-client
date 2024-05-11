@@ -7,6 +7,8 @@ import ErrorPage from './pages/ErrorPages'
 import HomePage from './pages/Home'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
+import DashboardPage from './pages/DashboardPage'
+import AuthContext from './AuthContex'
 
 const router = createBrowserRouter([
   {
@@ -25,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: '/register',
         element: <RegisterPage />
+      },
+      {
+        path: '/dashboard',
+        element: <AuthContext> <DashboardPage /> </AuthContext>
       }
     ]
   }

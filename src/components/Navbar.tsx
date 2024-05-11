@@ -5,7 +5,6 @@ import Toolbar from '@mui/material/Toolbar'
 import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 import Menu from '@mui/material/Menu'
-import MenuIcon from '@mui/icons-material/Menu'
 import Container from '@mui/material/Container'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import Tooltip from '@mui/material/Tooltip'
@@ -13,28 +12,20 @@ import MenuItem from '@mui/material/MenuItem'
 import AdbIcon from '@mui/icons-material/Adb'
 import { Link } from 'react-router-dom'
 import useUserStore from '../store/userStore.ts'
+import { User } from '../types/User'
+import MenuNavbar from './MenuNavbar.tsx'
 
-const pages = [
-  { name: 'Competencias', path: '/' },
-  { name: 'Acerca de', path: '/' },
-  { name: 'Blog', path: '/' }]
-const settings = ['Cuenta', 'Dashboard', 'Cerrar Session']
+const settings = ['', 'Cerrar Session']
 
 function ResponsiveAppBar () {
-  const user = useUserStore(state => state.user)
+  const user = useUserStore(state => state.user) as User
 
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null)
+  const fullName = `${user?.firstName} ${user?.lastName}`
+
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null)
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget)
-  }
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget)
-  }
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null)
   }
 
   const handleCloseUserMenu = () => {
@@ -63,76 +54,9 @@ function ResponsiveAppBar () {
           >
             Competencia Robotica
           </Typography>
-
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size='large'
-              aria-label='account of current user'
-              aria-controls='menu-appbar'
-              aria-haspopup='true'
-              onClick={handleOpenNavMenu}
-              color='inherit'
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id='menu-appbar'
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left'
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left'
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' }
-              }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page.name}>
-                  <Link to={page.path} style={{ textDecoration: 'none', color: 'inherit' }}>
-                    <Typography textAlign='center'>{page.name}</Typography>
-                  </Link>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-          <Typography
-            variant='h5'
-            noWrap
-            component='a'
-            href='/'
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none'
-            }}
-          >
-            Competencia Robotica
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <MenuItem key={page.name}>
-                <Link to={page.path} style={{ textDecoration: 'none', color: 'inherit' }}>
-                  <Typography textAlign='center'>{page.name}</Typography>
-                </Link>
-              </MenuItem>
-            ))}
-          </Box>
-
+          <MenuNavbar />
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title='Abrir Menu'>
+            <Tooltip title='Cuenta'>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <AccountCircleIcon fontSize='large' color='inherit' sx={{ display: { xs: 'none', md: 'flex', color: 'white' } }} />
               </IconButton>
@@ -155,26 +79,44 @@ function ResponsiveAppBar () {
               onClose={handleCloseUserMenu}
             >
               {user
-                ? (
-                    settings.map((setting) => (
-                      <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                        <Typography textAlign='center'>{setting}</Typography>
+                ? settings.map((setting) => {
+                  if (setting === 'Cerrar Session') {
+                    return (
+                      <MenuItem key={setting} onClick={() => useUserStore.getState().setUser(null)}>
+                        <Link to='/' style={{ textDecoration: 'none', color: 'inherit' }}>
+                          <Typography textAlign='center'>{setting}</Typography>
+                        </Link>
                       </MenuItem>
-                    ))
+                    )
+                  }
+                  return (
+                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                      <Typography textAlign='center'>{fullName}</Typography>
+                      <Typography textAlign='center'>{setting}</Typography>
+                    </MenuItem>
                   )
+                })
                 : (
                   <MenuItem>
-                    <Link to='/login' style={{ textDecoration: 'none', color: 'inherit' }}>
-                      <Typography variant='button'>Iniciar Sesión</Typography>
-                    </Link>
+                    <Box display='flex' flexDirection='column'>
+                      <Link to='/login' style={{ textDecoration: 'none', color: 'inherit' }}>
+                        <Typography variant='button'>Iniciar Sesión</Typography>
+                      </Link>
+                      <Box mt={1}>
+                        <Link to='/register' style={{ textDecoration: 'none', color: 'inherit' }}>
+                          <Typography variant='button'>Crear Cuenta</Typography>
+                        </Link>
+                      </Box>
+                    </Box>
                   </MenuItem>
+
                   )}
             </Menu>
-
           </Box>
         </Toolbar>
       </Container>
     </AppBar>
   )
 }
+
 export default ResponsiveAppBar

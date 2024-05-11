@@ -1,20 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-
-type Rol = {
-  description: string;
-  id: string;
-  name: string;
-  status: boolean;
-};
-
-type User = {
-  accessToken: string;
-  email: string;
-  firtName: string;
-  lastName: string;
-  rol: Rol | null;
-};
+import { User } from '../types/User'
 
 type Store = {
   user: User | null;
