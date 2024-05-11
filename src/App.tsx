@@ -7,10 +7,12 @@ import ErrorPage from './pages/ErrorPages'
 import HomePage from './pages/Home'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
-import DashboardPage from './pages/DashboardPage'
 import AuthContext from './AuthContex'
+import DashboardLayout from './layouts/DashboardLayout'
+import DashboardPage from './pages/DashboardPage'
+import UserPage from './pages/UserPages'
 
-const router = createBrowserRouter([
+const homeRoutes = [
   {
     path: '/',
     element: <Layout />,
@@ -27,14 +29,36 @@ const router = createBrowserRouter([
       {
         path: '/register',
         element: <RegisterPage />
-      },
-      {
-        path: '/dashboard',
-        element: <AuthContext> <DashboardPage /> </AuthContext>
       }
     ]
   }
-])
+]
+
+const dashboardRoutes = [
+  {
+    path: '/dashboard',
+    element: (
+      <AuthContext>
+        <DashboardLayout />
+      </AuthContext>
+    ),
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: '/dashboard',
+        element: <DashboardPage />
+      },
+      {
+        path: '/dashboard/users',
+        element: <UserPage />
+      }
+    ]
+  }
+]
+
+const combinedRoutes = [...homeRoutes, ...dashboardRoutes]
+
+const router = createBrowserRouter(combinedRoutes)
 
 function App () {
   return (

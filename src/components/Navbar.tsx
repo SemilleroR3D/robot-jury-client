@@ -10,7 +10,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import Tooltip from '@mui/material/Tooltip'
 import MenuItem from '@mui/material/MenuItem'
 import AdbIcon from '@mui/icons-material/Adb'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import useUserStore from '../store/userStore.ts'
 import { User } from '../types/User'
 import MenuNavbar from './MenuNavbar.tsx'
@@ -24,6 +24,10 @@ function ResponsiveAppBar () {
 
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null)
 
+  const location = useLocation()
+
+  const isDashboard = location.pathname.startsWith('/dashboard')
+
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget)
   }
@@ -33,7 +37,7 @@ function ResponsiveAppBar () {
   }
 
   return (
-    <AppBar position='static' sx={{ marginTop: '-0.1%', borderRadius: '30px' }}>
+    <AppBar sx={{ marginTop: '-0.1%', borderRadius: '0px', zIndex: isDashboard ? (theme) => theme.zIndex.drawer + 1 : 0 }}>
       <Container maxWidth='xl'>
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />

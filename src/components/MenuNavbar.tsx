@@ -7,7 +7,7 @@ import MenuIcon from '@mui/icons-material/Menu'
 import AdbIcon from '@mui/icons-material/Adb'
 import MenuItem from '@mui/material/MenuItem'
 import { User } from '../types/User'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import useUserStore from '../store/userStore.ts'
 
 // Conjunto de páginas para usuarios no administradores
@@ -29,6 +29,11 @@ export default function MenuNavbar () {
     role = user.rol.name
   }
 
+  const location = useLocation()
+
+  const drawerWidth = 240
+  const isDashboard = location.pathname === '/dashboard'
+
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null)
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -44,7 +49,14 @@ export default function MenuNavbar () {
 
   return (
     <>
-      <Box sx={{ flexGrow: 0, display: { xs: 'flex', md: 'none' } }}>
+      <Box sx={{
+        flexGrow: 0,
+        display: {
+          xs: 'flex',
+          md: 'none'
+        }
+      }}
+      >
         <IconButton
           size='large'
           aria-label='account of current user'
@@ -70,7 +82,13 @@ export default function MenuNavbar () {
           open={Boolean(anchorElNav)}
           onClose={handleCloseNavMenu}
           sx={{
-            display: { xs: 'block', md: 'none' }
+            display: {
+              xs: 'block',
+              md: 'none',
+              marginLeft: isDashboard ? '20%' : '-0.1%',
+              width: isDashboard ? `calc(0% - ${drawerWidth}px)` : '100%',
+              ml: isDashboard ? `calc(4% - ${drawerWidth}px)` : 0
+            }
           }}
         >
           {pagesToShow.map((page) => (
@@ -99,7 +117,7 @@ export default function MenuNavbar () {
           textDecoration: 'none'
         }}
       >
-        Competencia Robotica
+        Competencia Robotica2
       </Typography>
       <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
         {pagesToShow.map((page) => (
