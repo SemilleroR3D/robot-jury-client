@@ -23,7 +23,7 @@ export default function UserList ({ users, searchTerm }: UserListProps) {
               <TableRow key={user.id}>
                 <TableCell>{user.firstName} {user.lastName}</TableCell>
                 <TableCell>{user.email}</TableCell>
-                <TableCell>{user.rol?.name}</TableCell>
+                <TableCell />
                 <TableCell>
                   <Button>Eliminar</Button>
                 </TableCell>

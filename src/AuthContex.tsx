@@ -10,7 +10,7 @@ interface AuthContexProps {
 export default function AuthContext ({ children }: AuthContexProps) {
   const user = useUserStore((state) => state.user) as User
 
-  if (!!user && user.rol?.name === 'Admin') {
+  if (!!user && (!user.userTypes.find(({ name }) => name === 'Admin') ? 'NoRole' : 'Admin') === 'Admin') {
     return <>{children}</>
   }
 

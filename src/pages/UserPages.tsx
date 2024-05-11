@@ -1,17 +1,17 @@
 import { useState, useEffect } from 'react'
 import UserList from '../components/UserList'
 import { Select, TextField, MenuItem } from '@mui/material'
-import { User, Rol } from '../types/User'
+import { User, UserType } from '../types/User'
 import { getAllUsers } from '../services/User'
 import useUserStore from '../store/userStore.ts'
-import { getAllRoles } from '../services/Role.ts'
+import { getAllRoles, getRoleById } from '../services/Role.ts'
 
 export default function UserPage () {
   const user = useUserStore(state => state.user) as User
   const [searchTerm, setSearchTerm] = useState('')
   const [roleFilter, setRoleFilter] = useState('')
   const [users, setUsers] = useState<User[]>([])
-  const [roles, setRoles] = useState<Rol[]>([])
+  const [roles, setRoles] = useState<UserType[]>([])
 
   useEffect(() => {
     const accessToken = user.accessToken
@@ -38,6 +38,12 @@ export default function UserPage () {
     fetchRoles()
   }, [user.accessToken])
 
+  const handleChange = (value: string) => {
+    if (value) {
+      getRoleById(user.accessToken, value).then(data => setUsers(data.users))
+    }
+  }
+
   return (
     <>
       <TextField
@@ -50,16 +56,16 @@ export default function UserPage () {
       />
       <Select
         value={roleFilter}
-        onChange={(e) => setRoleFilter(e.target.value)}
+        onChange={(e) => handleChange(e.target.value)}
         displayEmpty
         inputProps={{ 'aria-label': 'Without label' }}
       >
         <MenuItem value=''>
           <em>Todos los roles</em>
         </MenuItem>
-        {roles.map((role) => (
-          <MenuItem key={role.name} value={role.name}>
-            {role.name}
+        {roles.map(({ name, id }) => (
+          <MenuItem key={id} value={id}>
+            {name}
           </MenuItem>
         ))}
       </Select>

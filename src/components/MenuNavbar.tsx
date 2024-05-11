@@ -23,10 +23,10 @@ const pagesAdmin = [
 
 export default function MenuNavbar () {
   const user = useUserStore(state => state.user) as User
-  let role = 'NoRole'
+  let roles: string[] = []
 
-  if (user && user.rol) {
-    role = user.rol.name
+  if (user && user.userTypes.length !== 0) {
+    roles = user.userTypes.map(({ name }) => name)
   }
 
   const location = useLocation()
@@ -45,7 +45,7 @@ export default function MenuNavbar () {
   }
 
   // Determinar qué páginas mostrar basado en el rol del usuario
-  const pagesToShow = role === 'Admin' ? pagesAdmin : pagesNonAdmin
+  const pagesToShow = roles.includes('Admin') ? pagesAdmin : pagesNonAdmin
 
   return (
     <>

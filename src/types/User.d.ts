@@ -1,4 +1,4 @@
-export type Rol = {
+export type UserType = {
   description: string;
   id: string;
   name: string;
@@ -11,7 +11,7 @@ export type User = {
   email: string;
   firstName: string;
   lastName: string;
-  rol: Rol | null;
+  userTypes: UserType[];
 };
 
 export type UserListProps = {
