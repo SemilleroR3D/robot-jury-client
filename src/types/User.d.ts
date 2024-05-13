@@ -14,11 +14,28 @@ export type User = {
   userTypes: UserType[];
 };
 
-export type UserListProps = {
-  users: User[];
-  searchTerm: string;
-};
-
 export type UserTypeListProps = {
   roles: UserType[];
+};
+
+export enum Sex {
+  Male,
+  Female
+}
+
+export type UserFetch = {
+  id: string,
+  firstName: string,
+  lastName: string,
+  birthDate: Date,
+  sex: Sex,
+  phone: string,
+  email: string,
+  userTypes: UserType[]
+}
+
+export type UserListProps = {
+  users: UserFetch[];
+  searchTerm: string;
+  role: string;
 };
