@@ -11,6 +11,10 @@ import AuthContext from './AuthContex'
 import DashboardLayout from './layouts/DashboardLayout'
 import DashboardPage from './pages/DashboardPage'
 import UserPage from './pages/UserPages'
+import RolesPage from './pages/RolesPages'
+import TeamsPage from './pages/TeamsPage'
+import CompetenciesPage from './pages/CompetenciesPage'
+import JurymanPage from './pages/JurymanPage'
 
 const homeRoutes = [
   {
@@ -51,6 +55,22 @@ const dashboardRoutes = [
       {
         path: '/dashboard/users',
         element: <UserPage />
+      },
+      {
+        path: '/dashboard/rol',
+        element: <RolesPage />
+      },
+      {
+        path: '/dashboard/teams',
+        element: <TeamsPage />
+      },
+      {
+        path: '/dashboard/competencies',
+        element: <CompetenciesPage />
+      },
+      {
+        path: '/dashboard/juryman',
+        element: <JurymanPage />
       }
     ]
   }

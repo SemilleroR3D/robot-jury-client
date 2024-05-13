@@ -10,19 +10,22 @@ import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
 import Divider from '@mui/material/Divider'
 import { Link } from 'react-router-dom'
+import PersonIcon from '@mui/icons-material/Person'
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings'
+import GroupsIcon from '@mui/icons-material/Groups'
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents'
+import GavelIcon from '@mui/icons-material/Gavel'
 
 const menuItems = [
-  { name: 'Usuarios', path: '/dashboard/users' },
-  { name: 'Equipos', path: '/' },
-  { name: 'Competencias', path: '/' },
-  { name: 'Jurados', path: '/' }
-
+  { name: 'Usuarios', path: '/dashboard/users', icon: PersonIcon },
+  { name: 'Roles', path: '/dashboard/rol', icon: AdminPanelSettingsIcon },
+  { name: 'Equipos', path: '/dashboard/teams', icon: GroupsIcon },
+  { name: 'Competencias', path: '/dashboard/competencies', icon: EmojiEventsIcon },
+  { name: 'Jurados', path: '/dashboard/juryman', icon: GavelIcon }
 ]
 
 export default function DrawerDashboardMenu () {
   const drawerWidth = 240
-  // const paddingPercentage = 0
-  // const mainContentPadding = (drawerWidth - 140) + (window.innerWidth * paddingPercentage)
 
   return (
     <>
@@ -32,17 +35,17 @@ export default function DrawerDashboardMenu () {
         sx={{
           width: drawerWidth,
           flexShrink: 0,
-          '& .MuiDrawer-paper': { width: drawerWidth, boxSizing: 'border-box' }
+          '&.MuiDrawer-paper': { width: drawerWidth, boxSizing: 'border-box' }
         }}
       >
         <Toolbar />
         <Box sx={{ overflow: 'auto' }}>
           <List>
-            {menuItems.map((item, index) => (
+            {menuItems.map((item) => (
               <ListItem key={item.name} disablePadding>
                 <ListItemButton component={Link} to={item.path}>
                   <ListItemIcon>
-                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                    <item.icon />
                   </ListItemIcon>
                   <ListItemText primary={item.name} />
                 </ListItemButton>

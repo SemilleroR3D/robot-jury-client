@@ -18,3 +18,7 @@ export type UserListProps = {
   users: User[];
   searchTerm: string;
 };
+
+export type UserTypeListProps = {
+  roles: UserType[];
+};
