@@ -1,17 +1,7 @@
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material'
 import { UserListProps } from '../types/User'
-import { useMemo } from 'react'
 
-export default function UserList ({ users, searchTerm, role }: UserListProps) {
-  const visibleUsers = useMemo(() => users
-    .filter(
-      ({ firstName, lastName, userTypes }) => `${firstName} ${lastName}`
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase()) && role === ''
-        ? true
-        : userTypes.find(userType => userType.name === role))
-  , [users, searchTerm, role])
-
+export default function UserList ({ users }: UserListProps) {
   return (
     <>
       <TableContainer component={Paper}>
@@ -25,7 +15,7 @@ export default function UserList ({ users, searchTerm, role }: UserListProps) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {visibleUsers.map((user) => (
+            {users.map((user) => (
               <TableRow key={user.id}>
                 <TableCell>{user.firstName} {user.lastName}</TableCell>
                 <TableCell>{user.email}</TableCell>

@@ -1,6 +1,7 @@
 import axios from 'axios'
+import { UserType } from '../types/User'
 
-export const getAllRoles = async (accessToken: string) => {
+export const getAllRoles = async (accessToken: string): Promise<UserType[]> => {
   try {
     const response = await axios.get('/usertypes', {
       headers: {

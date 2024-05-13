@@ -36,6 +36,4 @@ export type UserFetch = {
 
 export type UserListProps = {
   users: UserFetch[];
-  searchTerm: string;
-  role: string;
 };
