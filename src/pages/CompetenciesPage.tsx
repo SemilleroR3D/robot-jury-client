@@ -1,4 +1,4 @@
-import CompentenciesList from '../components/CompentenciesList'
+import CompentenciesList from '../components/CompetenciesPage/CompentenciesList'
 
 export default function CompetenciesPage () {
   return (
