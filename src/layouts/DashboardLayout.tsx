@@ -13,18 +13,21 @@ function DashboardLayout () {
 
   const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{ open?: boolean; }>(({ theme, open }) => ({
     flexGrow: 1,
-    padding: theme.spacing(3),
+    padding: theme.spacing(10),
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
     }),
-    marginLeft: `-${drawerWidth}px`,
+    marginLeft: `10-${drawerWidth}px`,
     ...(open && {
       transition: theme.transitions.create('margin', {
         easing: theme.transitions.easing.easeOut,
         duration: theme.transitions.duration.enteringScreen
       }),
-      marginLeft: 100
+      flexGrow: 1,
+      marginLeft: 140,
+      padding: theme.spacing(10)
+
     })
   }))
 
@@ -32,9 +35,6 @@ function DashboardLayout () {
     <>
       <Navbar />
       <DrawerDashboardMenu open={open} setOpen={setOpen} />
-      {/* <Box component='main' sx={{ flexGrow: 1, p: '10%', marginLeft: '10%' }}>
-        <Outlet />
-      </Box> */}
       <Main open={open}>
         <Outlet />
       </Main>

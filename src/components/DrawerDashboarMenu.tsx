@@ -21,6 +21,8 @@ import MenuIcon from '@mui/icons-material/Menu'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import { styled, useTheme } from '@mui/material/styles'
+import Typography from '@mui/material/Typography'
+import Tooltip from '@mui/material/Tooltip'
 
 const drawerWidth = 240
 
@@ -36,7 +38,7 @@ const menuItems = [
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
-  padding: theme.spacing(0, 1),
+  padding: theme.spacing(0, 2),
   ...theme.mixins.toolbar,
   justifyContent: 'flex-end'
 }))
@@ -55,21 +57,23 @@ export default function DrawerDashboardMenu ({ open, setOpen }: DrawerDashboardM
   return (
     <>
       {!open && (
-        <IconButton
-          edge='start'
-          color='inherit'
-          aria-label='abrir menú'
-          sx={{
-            display: { xs: 'block', md: 'block' },
-            position: 'absolute',
-            top: 8,
-            left: 8,
-            width: 100
-          }}
-          onClick={toggleDrawer(true)}
-        >
-          <MenuIcon />
-        </IconButton>
+        <Tooltip title='Abrir Menu'>
+          <IconButton
+            edge='start'
+            color='inherit'
+            aria-label='abrir menú'
+            sx={{
+              display: { xs: 'block', md: 'block' },
+              position: 'absolute',
+              top: 8,
+              left: 8,
+              width: 100
+            }}
+            onClick={toggleDrawer(true)}
+          >
+            <MenuIcon />
+          </IconButton>
+        </Tooltip>
       )}
 
       <Drawer
@@ -90,8 +94,12 @@ export default function DrawerDashboardMenu ({ open, setOpen }: DrawerDashboardM
             color='inherit'
             aria-label='cerrar drawer'
             onClick={toggleDrawer(false)}
+            sx={{ position: 'absolute', top: 8, left: 8, width: 100 }}
           >
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            <Typography variant='body1' color='common' align='center'>
+              {' Cerrar '}
+            </Typography>
           </IconButton>
         </DrawerHeader>
         <Box sx={{ overflow: 'auto' }}>
