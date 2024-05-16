@@ -15,8 +15,13 @@ import RolesPage from './pages/RolesPages'
 import TeamsPage from './pages/TeamsPage'
 import CompetenciesPage from './pages/CompetenciesPage'
 import JurymanPage from './pages/JurymanPage'
+import PositionsPage from './pages/CrudPositionsPage'
 
 const homeRoutes = [
+  {
+    path: '/admin/:id',
+    element: <PositionsPage />
+  },
   {
     path: '/',
     element: <Layout />,
