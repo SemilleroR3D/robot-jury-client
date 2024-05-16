@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { UserType } from '../types/User'
+import { UserType, UserTypeUser } from '../types/User'
 
 export const getAllRoles = async (accessToken: string): Promise<UserType[]> => {
   try {
@@ -22,11 +22,26 @@ export const getRoleById = async (accessToken: string, id: string) => {
         Authorization: `Bearer ${accessToken}`
       }
     })
-    console.log(response.data)
     return response.data
   } catch (error: any) {
     console.error(error)
     const errorMessage = error.response.data.message || 'Bad Request'
+    throw new Error(errorMessage)
+  }
+}
+
+export const postUsertypeUser = async (accessToken: string, data: UserTypeUser) => {
+  try {
+    const response = await axios.post('/usertypes/user', data, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`
+      }
+    })
+    console.log(response.data)
+    return response.data
+  } catch (error: any) {
+    console.error(error)
+    const errorMessage = error.response?.data?.message || 'Bad Request'
     throw new Error(errorMessage)
   }
 }
