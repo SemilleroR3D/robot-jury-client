@@ -19,10 +19,6 @@ import PositionsPage from './pages/CrudPositionsPage'
 
 const homeRoutes = [
   {
-    path: '/admin/:id',
-    element: <PositionsPage />
-  },
-  {
     path: '/',
     element: <Layout />,
     errorElement: <ErrorPage />,
@@ -72,6 +68,10 @@ const dashboardRoutes = [
       {
         path: '/dashboard/competencies',
         element: <CompetenciesPage />
+      },
+      {
+        path: '/dashboard/competencies/:id',
+        element: <PositionsPage />
       },
       {
         path: '/dashboard/juryman',

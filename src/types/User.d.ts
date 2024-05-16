@@ -37,3 +37,14 @@ export type UserFetch = {
 export type UserListProps = {
   users: UserFetch[];
 };
+
+export interface UserRoleDialogProps {
+  open: boolean;
+  onClose: () => void;
+  userId: string | null;
+}
+
+export type UserTypeUser = {
+  userId: string | null;
+  userTypeId: string | null;
+};
