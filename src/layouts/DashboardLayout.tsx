@@ -2,17 +2,14 @@ import { Outlet } from 'react-router-dom'
 import '../App.css'
 import Navbar from '../components/Navbar'
 import DrawerDashboardMenu from '../components/DrawerDashboarMenu'
-import useDrawerStore from '../store/DrawerStore'
-
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { styled } from '@mui/material/styles'
 import { useState } from 'react'
 
+const drawerWidth = 240
+
 function DashboardLayout () {
   const [open, setOpen] = useState(useMediaQuery('(min-width:600px)'))
-  console.log(open)
-
-  const drawerWidth = useDrawerStore(state => state.drawerWidth)
 
   const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{ open?: boolean; }>(({ theme, open }) => ({
     flexGrow: 1,
