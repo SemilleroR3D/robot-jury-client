@@ -18,7 +18,7 @@ function Footer () {
       }}
     >
       <Typography variant='body2' color='common.white' align='center'>
-        {'Desarrollado por '}
+        {'Desarrollado por: '}
         <Link color='inherit' target='_blank' href='https://github.com/ToquiNovic' rel='noreferrer'>
           Daniel Toquica -
         </Link>{' '}
