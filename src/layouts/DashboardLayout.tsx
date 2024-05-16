@@ -3,10 +3,15 @@ import '../App.css'
 import Navbar from '../components/Navbar'
 import DrawerDashboardMenu from '../components/DrawerDashboarMenu'
 import useDrawerStore from '../store/DrawerStore'
+
+import useMediaQuery from '@mui/material/useMediaQuery'
 import { styled } from '@mui/material/styles'
+import { useState } from 'react'
 
 function DashboardLayout () {
-  const open = useDrawerStore(state => state.open)
+  const [open, setOpen] = useState(useMediaQuery('(min-width:600px)'))
+  console.log(open)
+
   const drawerWidth = useDrawerStore(state => state.drawerWidth)
 
   const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{ open?: boolean; }>(({ theme, open }) => ({
@@ -29,7 +34,7 @@ function DashboardLayout () {
   return (
     <>
       <Navbar />
-      <DrawerDashboardMenu />
+      <DrawerDashboardMenu open={open} setOpen={setOpen} />
       {/* <Box component='main' sx={{ flexGrow: 1, p: '10%', marginLeft: '10%' }}>
         <Outlet />
       </Box> */}

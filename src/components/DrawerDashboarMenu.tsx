@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import Drawer from '@mui/material/Drawer'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
@@ -19,11 +18,9 @@ import GavelIcon from '@mui/icons-material/Gavel'
 import DashboardIcon from '@mui/icons-material/Dashboard'
 import IconButton from '@mui/material/IconButton'
 import MenuIcon from '@mui/icons-material/Menu'
-import useMediaQuery from '@mui/material/useMediaQuery'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import { styled, useTheme } from '@mui/material/styles'
-import useDrawerStore from '../store/DrawerStore'
 
 const drawerWidth = 240
 
@@ -44,12 +41,13 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end'
 }))
 
-export default function DrawerDashboardMenu () {
-  const theme = useTheme()
-  const [open, setOpen] = useState(useMediaQuery('(min-width:600px)'))
-  // useDrawerStore.getState().setDrawerWidth(drawerWidth)
-  useDrawerStore.getState().setOpen(open)
+interface DrawerDashboardMenuInterface {
+  open: boolean;
+  setOpen: (open: boolean) => void;
+}
 
+export default function DrawerDashboardMenu ({ open, setOpen }: DrawerDashboardMenuInterface) {
+  const theme = useTheme()
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen)
   }
