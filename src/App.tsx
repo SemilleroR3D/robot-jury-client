@@ -16,9 +16,20 @@ import TeamsPage from './pages/TeamsPage'
 import CompetenciesPage from './pages/CompetenciesPage'
 import JurymanPage from './pages/JurymanPage'
 import PositionsPage from './pages/CrudPositionsPage'
+import JuriesPage from './pages/JuriesPage'
+import CalificationPage from './pages/CalificationPage'
 
 const homeRoutes = [
   {
+    path: '/juries',
+    element: <JuriesPage />
+  },
+  {
+    path: '/juries/:id',
+    element: <CalificationPage />
+  },
+  {
+
     path: '/',
     element: <Layout />,
     errorElement: <ErrorPage />,
