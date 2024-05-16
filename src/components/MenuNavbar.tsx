@@ -112,12 +112,12 @@ export default function MenuNavbar () {
           flexGrow: 1,
           fontFamily: 'monospace',
           fontWeight: 700,
-          letterSpacing: '.3rem',
+          letterSpacing: '.0.5rem',
           color: 'inherit',
           textDecoration: 'none'
         }}
       >
-        Competencia Robotica2
+        Competencia Robotica
       </Typography>
       <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
         {pagesToShow.map((page) => (

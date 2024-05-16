@@ -62,12 +62,12 @@ function ResponsiveAppBar () {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title='Cuenta'>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <AccountCircleIcon fontSize='large' color='inherit' sx={{ display: { xs: 'none', md: 'flex', color: 'white' } }} />
+                <AccountCircleIcon fontSize='large' color='inherit' sx={{ display: { xs: 'flex', md: 'flex', color: 'white' } }} />
               </IconButton>
             </Tooltip>
 
             <Menu
-              sx={{ mt: '45px' }}
+              sx={{ mt: '45px', transitionDuration: '300ms' }}
               id='menu-appbar'
               anchorEl={anchorElUser}
               anchorOrigin={{
