@@ -10,53 +10,34 @@ import { User } from '../types/User'
 import { Link, useLocation } from 'react-router-dom'
 import useUserStore from '../store/userStore.ts'
 
-// Conjunto de páginas para usuarios no administradores
 const pagesNonAdmin = [
   { name: 'Competencias', path: '/' },
-  { name: 'Acerca de', path: '/' }]
-
-// Conjunto de páginas para usuarios administradores
+  { name: 'Acerca de', path: '/' }
+]
 const pagesAdmin = [
   { name: 'Acerca de', path: '/' },
   { name: 'Competencias', path: '/' },
-  { name: 'Dashboard', path: '/dashboard' }]
+  { name: 'Dashboard', path: '/dashboard' }
+]
 
 export default function MenuNavbar () {
-  const user = useUserStore(state => state.user) as User
-  let roles: string[] = []
-
-  if (user && user.userTypes.length !== 0) {
-    roles = user.userTypes.map(({ name }) => name)
-  }
-
+  const user = useUserStore((state) => state.user) as User
+  const roles = user?.userTypes.map(({ name }) => name) || []
   const location = useLocation()
+  const isDashboard = location.pathname.startsWith('/dashboard')
+  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
+    null
+  )
 
-  const drawerWidth = 240
-  const isDashboard = location.pathname === '/dashboard'
-
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null)
-
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) =>
     setAnchorElNav(event.currentTarget)
-  }
+  const handleCloseNavMenu = () => setAnchorElNav(null)
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null)
-  }
-
-  // Determinar qué páginas mostrar basado en el rol del usuario
   const pagesToShow = roles.includes('Admin') ? pagesAdmin : pagesNonAdmin
 
   return (
     <>
-      <Box sx={{
-        flexGrow: 0,
-        display: {
-          xs: 'flex',
-          md: 'none'
-        }
-      }}
-      >
+      <Box sx={{ flexGrow: 0, display: { xs: 'flex', md: 'none' } }}>
         <IconButton
           size='large'
           aria-label='account of current user'
@@ -86,14 +67,17 @@ export default function MenuNavbar () {
               xs: 'block',
               md: 'none',
               marginLeft: isDashboard ? '20%' : '-0.1%',
-              width: isDashboard ? `calc(0% - ${drawerWidth}px)` : '100%',
-              ml: isDashboard ? `calc(4% - ${drawerWidth}px)` : 0
+              width: isDashboard ? 'calc(0% - 240px)' : '100%',
+              ml: isDashboard ? 'calc(4% - 240px)' : 0
             }
           }}
         >
           {pagesToShow.map((page) => (
             <MenuItem key={page.name}>
-              <Link to={page.path} style={{ textDecoration: 'none', color: 'inherit' }}>
+              <Link
+                to={page.path}
+                style={{ textDecoration: 'none', color: 'inherit' }}
+              >
                 <Typography textAlign='center'>{page.name}</Typography>
               </Link>
             </MenuItem>
@@ -122,7 +106,10 @@ export default function MenuNavbar () {
       <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
         {pagesToShow.map((page) => (
           <MenuItem key={page.name}>
-            <Link to={page.path} style={{ textDecoration: 'none', color: 'inherit' }}>
+            <Link
+              to={page.path}
+              style={{ textDecoration: 'none', color: 'inherit' }}
+            >
               <Typography textAlign='center'>{page.name}</Typography>
             </Link>
           </MenuItem>
