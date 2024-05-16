@@ -21,18 +21,6 @@ import CalificationPage from './pages/CalificationPage'
 
 const homeRoutes = [
   {
-    path: '/admin/:id',
-    element: <PositionsPage />
-  },
-  {
-    path: '/juries',
-    element: <JuriesPage />
-  },
-  {
-    path: '/juries/:id',
-    element: <CalificationPage />
-  },
-  {
     path: '/',
     element: <Layout />,
     errorElement: <ErrorPage />,
@@ -82,6 +70,10 @@ const dashboardRoutes = [
       {
         path: '/dashboard/competencies',
         element: <CompetenciesPage />
+      },
+      {
+        path: '/dashboard/competencies/:id',
+        element: <PositionsPage />
       },
       {
         path: '/dashboard/juryman',
