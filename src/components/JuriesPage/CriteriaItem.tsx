@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 import { ICriterion } from '../../services/juries'
+import { TableRow, Typography, Button, TableCell, Tooltip } from '@mui/material'
+import BorderColorIcon from '@mui/icons-material/BorderColor'
 
 interface ICriteriaItem {
   criterion: ICriterion
@@ -7,10 +9,21 @@ interface ICriteriaItem {
 
 const CriteriaItem = ({ criterion }: ICriteriaItem) => {
   return (
-    <Link to={`/juries/${criterion.id}`}>
-      <h6>{criterion.name}</h6>
-      <p>{`Valor en porcentaje: ${criterion.percent}`}</p>
-    </Link>
+    <>
+      <TableRow>
+        <TableCell align='center'>
+          <Typography variant='h6'>{criterion.name}</Typography>
+          <Typography variant='body2'>Valor: {criterion.percent} %</Typography>
+        </TableCell>
+        <TableCell align='center'>
+          <Tooltip title='Calificar'>
+            <Button component={Link} to={`/dashboard/juries/${criterion.id}`} color='primary'>
+              <BorderColorIcon />
+            </Button>
+          </Tooltip>
+        </TableCell>
+      </TableRow>
+    </>
   )
 }
 

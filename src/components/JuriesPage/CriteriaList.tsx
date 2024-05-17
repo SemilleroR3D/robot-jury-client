@@ -7,11 +7,11 @@ interface ICriteriaList {
 
 const CriterionList = ({ criteria }: ICriteriaList) => {
   return (
-    <div>
+    <>
       {criteria.map((criterion) => (
         <CriteriaItem key={criterion.id} criterion={criterion} />
       ))}
-    </div>
+    </>
   )
 }
 

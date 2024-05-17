@@ -24,6 +24,7 @@ export interface IJuryEvaluation {
 export interface IJury {
   id: string;
   firstName: string;
+  lastName: string;
   evaluations: IJuryEvaluation[]
 }
 

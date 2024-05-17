@@ -32,7 +32,7 @@ const menuItems = [
   { name: 'Roles', path: '/dashboard/rol', icon: AdminPanelSettingsIcon },
   { name: 'Equipos', path: '/dashboard/teams', icon: GroupsIcon },
   { name: 'Competencias', path: '/dashboard/competencies', icon: EmojiEventsIcon },
-  { name: 'Jurados', path: '/dashboard/juryman', icon: GavelIcon }
+  { name: 'Evalucion', path: '/dashboard/juries', icon: GavelIcon }
 ]
 
 const DrawerHeader = styled('div')(({ theme }) => ({
