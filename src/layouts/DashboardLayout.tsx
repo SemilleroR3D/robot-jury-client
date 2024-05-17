@@ -1,5 +1,4 @@
 import { Outlet } from 'react-router-dom'
-import '../App.css'
 import Navbar from '../components/Navbar'
 import DrawerDashboardMenu from '../components/DrawerDashboarMenu'
 import useMediaQuery from '@mui/material/useMediaQuery'

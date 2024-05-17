@@ -18,6 +18,7 @@ import JurymanPage from './pages/JurymanPage'
 import PositionsPage from './pages/CrudPositionsPage'
 import JuriesPage from './pages/JuriesPage'
 import CalificationPage from './pages/CalificationPage'
+import BoardPage from './pages/BoardPage'
 
 const homeRoutes = [
   {
@@ -27,6 +28,10 @@ const homeRoutes = [
   {
     path: '/juries/:id',
     element: <CalificationPage />
+  },
+  {
+    path: '/board/:id',
+    element: <BoardPage />
   },
   {
 
