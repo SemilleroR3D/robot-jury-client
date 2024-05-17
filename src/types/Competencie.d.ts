@@ -10,7 +10,7 @@ export type Competencie = {
   description: string;
   place: string;
   startDate: string;
-  registerDeadline: string; adecuadamente
+  registerDeadline: string;
   deadlineUpdate: string;
   status: boolean;
   banners: Banners[];
