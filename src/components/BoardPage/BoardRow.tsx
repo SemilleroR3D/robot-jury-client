@@ -37,7 +37,7 @@ const BoardRow = ({ competitionRegistration }: IBoardRow) => {
         <TableCell component='th' scope='row'>
           {competitionRegistration.robot.name}
         </TableCell>
-        <TableCell align='center'>{competitionRegistration.total}</TableCell>
+        <TableCell align='center'>{(competitionRegistration.total / 10).toPrecision(2)}</TableCell>
         <TableCell align='center'>
           <LocalShippingIcon
             sx={{

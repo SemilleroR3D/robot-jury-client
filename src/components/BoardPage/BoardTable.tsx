@@ -9,6 +9,7 @@ import { IComptetitionRegister } from '../../services/board'
 import IconButton from '@mui/material/IconButton'
 import SwapVertIcon from '@mui/icons-material/SwapVert'
 import BoardRow from './BoardRow'
+import { useBoardTable } from '../../hooks/useBoardTable'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -34,6 +35,8 @@ interface IBoardTable {
 }
 
 const BoardTable = ({ competitionRegistrations }: IBoardTable) => {
+  const { score, orderByTry, orderByPlace, orderByTotal } = useBoardTable({ competitionBoard: competitionRegistrations })
+
   return (
     <TableContainer sx={{ marginTop: '10px' }} component={Paper}>
       <Table>
@@ -55,7 +58,7 @@ const BoardTable = ({ competitionRegistrations }: IBoardTable) => {
             </TableCell>
             <TableCell>
               <Typography variant='subtitle1' align='center'>
-                <IconButton>
+                <IconButton onClick={() => orderByTotal()}>
                   <SwapVertIcon />
                 </IconButton>
                 Puntaje
@@ -68,7 +71,7 @@ const BoardTable = ({ competitionRegistrations }: IBoardTable) => {
             </TableCell>
             <TableCell>
               <Typography variant='subtitle1' align='center'>
-                <IconButton>
+                <IconButton onClick={() => orderByPlace()}>
                   <SwapVertIcon />
                 </IconButton>
                 Turno
@@ -76,7 +79,7 @@ const BoardTable = ({ competitionRegistrations }: IBoardTable) => {
             </TableCell>
             <TableCell>
               <Typography variant='subtitle1' align='center'>
-                <IconButton>
+                <IconButton onClick={() => orderByTry()}>
                   <SwapVertIcon />
                 </IconButton>
                 Intento
@@ -85,7 +88,7 @@ const BoardTable = ({ competitionRegistrations }: IBoardTable) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {competitionRegistrations.map((competitionRegistration) => (
+          {score.map((competitionRegistration) => (
             <BoardRow
               key={competitionRegistration.id}
               competitionRegistration={competitionRegistration}

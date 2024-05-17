@@ -23,7 +23,7 @@ const BoardPage = () => {
           alt='Logo semillero'
           height='200'
         />
-        <Typography align='center' variant='h3' fontSize='md'>
+        <Typography align='center' alignContent='center' variant='h3' fontSize='md'>
           {board.name}
         </Typography>
         <img

@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { IEvaluation } from './juries'
 
 export interface IRobot {
   id: string;
@@ -16,6 +17,8 @@ export interface ICriterion {
   id: number;
   name: string;
   percent: number;
+  evaluationId: string;
+  evaluation: IEvaluation;
 }
 
 export interface INote {
