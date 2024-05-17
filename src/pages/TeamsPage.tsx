@@ -3,7 +3,7 @@ import { getAllTeam } from '../services/Team'
 import useUserStore from '../store/userStore.ts'
 import { User } from '../types/User'
 import { Team } from '../types/Team'
-import TeamList from '../components/TeamsList.tsx'
+import TeamList from '../components/TeamsPage/TeamsList'
 
 export default function TeamsPage () {
   const user = useUserStore(state => state.user) as User

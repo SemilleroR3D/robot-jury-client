@@ -1,7 +1,7 @@
 import axios from 'axios'
-import { ICompetition } from '../types/Competencie'
+import { Competencie } from '../types/Competencie'
 
-export const getAllCompetencie = async (accessToken: string): Promise<ICompetition> => {
+export const getAllCompetencie = async (accessToken: string): Promise<Competencie[]> => {
   try {
     const response = await axios.get('/competitions', {
       headers: {
