@@ -51,8 +51,4 @@ export interface ICompetence {
   categories: ICategory[];
 }
 
-export const getBoard = async (id: string): Promise<ICompetence> => {
-  const competence = await axios.get(`/board/${id}`)
-
-  return competence.data
-}
+export const getBoard = async (id: string): Promise<ICompetence> => (await axios.get(`/board/${id}`)).data

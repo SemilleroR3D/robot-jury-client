@@ -9,7 +9,6 @@ import { IComptetitionRegister } from '../../services/board'
 import IconButton from '@mui/material/IconButton'
 import SwapVertIcon from '@mui/icons-material/SwapVert'
 import BoardRow from './BoardRow'
-import { useBoardTable } from '../../hooks/useBoardTable'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -35,9 +34,6 @@ interface IBoardTable {
 }
 
 const BoardTable = ({ competitionRegistrations }: IBoardTable) => {
-  const { score } = useBoardTable({ competitionBoard: competitionRegistrations })
-  console.log(score)
-
   return (
     <TableContainer sx={{ marginTop: '10px' }} component={Paper}>
       <Table>
